@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Analyzer — PassGuard</title>
+    <meta name="description"
+        content="Analyze your password strength with real-time entropy, pattern detection, breach checking, and a secure password generator.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layouts.css">
+    <link rel="stylesheet" href="css/animations.css">
+
+    <style>
+        /* Analyzer-specific styles */
+        .analyzer-input-card {
+            padding: var(--space-8);
+        }
+
+        .password-input-wrapper {
+            position: relative;
+        }
+
+        .password-input-wrapper .input-field {
+            padding-right: 100px;
+            font-size: var(--text-xl);
+            letter-spacing: 0.05em;
+        }
+
+        .char-counter {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            margin-top: var(--space-2);
+            text-align: right;
+        }
+
+        .gauge-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gauge-center-content {
+            position: absolute;
+            text-align: center;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-4);
+        }
+
+        .comp-row {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+        }
+
+        .comp-label {
+            width: 90px;
+            font-size: var(--text-xs);
+            font-weight: var(--weight-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-muted);
+            flex-shrink: 0;
+        }
+
+        .comp-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        [data-theme="light"] .comp-bar {
+            background: rgba(0, 0, 0, 0.06);
+        }
+
+        .comp-bar-fill {
+            height: 100%;
+            border-radius: var(--radius-full);
+            transition: width 500ms ease;
+            width: 0%;
+        }
+
+        .comp-percent {
+            width: 36px;
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-text-secondary);
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: var(--text-sm);
+            font-weight: var(--weight-semibold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-4);
+            padding-bottom: var(--space-2);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .gen-text {
+            flex: 1;
+            word-break: break-all;
+            font-size: var(--text-sm);
+        }
+
+        .gen-actions {
+            display: flex;
+            gap: var(--space-2);
+            flex-shrink: 0;
+        }
+
+        .warnings-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+    </style>
+</head>
+
+<body class="scan-lines">
+    <div class="page">
+        <main class="main-content">
+            <div class="container" style="padding-top: var(--space-10); padding-bottom: var(--space-16);">
+
+                <!-- Page Header -->
+                <div class="section-header fade-in-up" style="margin-bottom: var(--space-8);">
+                    <h2>Password <span class="gradient-text">Analyzer</span></h2>
+                    <p>Enter a password below for comprehensive security analysis in real-time.</p>
+                </div>
+
+                <div class="analyzer-layout">
+                    <!-- ═══ Main Column ═══ -->
+                    <div class="analyzer-main">
+
+                        <!-- Password Input -->
+                        <div class="card analyzer-input-card fade-in-up">
+                            <div class="section-title">Password Input</div>
+                            <div class="input-group password-input-wrapper">
+                                <input type="password" id="passwordInput" class="input-field"
+                                    placeholder="Enter password to analyze..." autocomplete="off" spellcheck="false"
+                                    aria-label="Password to analyze">
+                                <div class="input-addon">
+                                    <button class="btn-icon tooltip" id="toggleVisibility" data-tooltip="Show/Hide"
+                                        aria-label="Toggle password visibility">👁️</button>
+                                </div>
+                            </div>
+                            <div class="char-counter" id="charCount">0 characters</div>
+                        </div>
+
+                        <!-- Strength Gauge + Bar -->
+                        <div class="card fade-in-up fade-in-up-1">
+                            <div class="section-title">Strength Score</div>
+                            <div class="gauge-wrapper">
+                                <svg class="gauge-svg" viewBox="0 0 160 160" aria-hidden="true">
+                                    <circle class="gauge-bg" cx="80" cy="80" r="70"></circle>
+                                    <circle class="gauge-fill" id="gaugeFill" cx="80" cy="80" r="70"></circle>
+                                </svg>
+                                <div class="gauge-center-content">
+                                    <div class="gauge-score" id="gaugeScore">0</div>
+                                    <div class="gauge-label" id="gaugeLabel">Enter a password</div>
+                                </div>
+                            </div>
+                            <div style="margin-top: var(--space-6);">
+                                <div class="strength-bar-wrapper">
+                                    <div class="strength-bar-fill" id="strengthBarFill"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Statistics -->
+                        <div class="card fade-in-up fade-in-up-2">
+                            <div class="section-title">Analysis Details</div>
+                            <div class="stats-row">
+                                <div class="stat-card">
+                                    <span class="stat-icon">🧮</span>
+                                    <span class="stat-label">Entropy</span>
+                                    <span class="stat-value" id="entropyValue">0 bits</span>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-icon">🌐</span>
+                                    <span class="stat-label">Online Attack</span>
+                                    <span class="stat-value" id="crackTimeValue">—</span>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-icon">⚡</span>
+                                    <span class="stat-label">GPU Cluster</span>
+                                    <span class="stat-value" id="crackTimeOffline">—</span>
+                                </div>
+                                <div class="stat-card">
+                                    <span class="stat-icon">📊</span>
+                                    <span class="stat-label">Score Basis</span>
+                                    <span class="stat-value"
+                                        style="font-size: var(--text-xs); line-height: 1.4; color: var(--color-text-muted);">Entropy
+                                        + Criteria + Length - Penalties</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Character Composition -->
+                        <div class="card fade-in-up fade-in-up-3">
+                            <div class="section-title">Character Composition</div>
+                            <div id="compUppercase" class="comp-row">
+                                <span class="comp-label">Uppercase</span>
+                                <div class="comp-bar">
+                                    <div class="comp-bar-fill"></div>
+                                </div>
+                                <span class="comp-percent">0%</span>
+                            </div>
+                            <div id="compLowercase" class="comp-row">
+                                <span class="comp-label">Lowercase</span>
+                                <div class="comp-bar">
+                                    <div class="comp-bar-fill"></div>
+                                </div>
+                                <span class="comp-percent">0%</span>
+                            </div>
+                            <div id="compDigits" class="comp-row">
+                                <span class="comp-label">Digits</span>
+                                <div class="comp-bar">
+                                    <div class="comp-bar-fill"></div>
+                                </div>
+                                <span class="comp-percent">0%</span>
+                            </div>
+                            <div id="compSymbols" class="comp-row">
+                                <span class="comp-label">Symbols</span>
+                                <div class="comp-bar">
+                                    <div class="comp-bar-fill"></div>
+                                </div>
+                                <span class="comp-percent">0%</span>
+                            </div>
+                        </div>
+
+                        <!-- Warnings -->
+                        <div class="card fade-in-up fade-in-up-4">
+                            <div class="section-title">Security Warnings</div>
+                            <div class="warnings-section" id="warningsList">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Breach Check -->
+                        <div class="card fade-in-up fade-in-up-5">
+                            <div class="section-title">Data Breach Check</div>
+                            <p style="font-size: var(--text-sm); margin-bottom: var(--space-4);">
+                                Check if this password has appeared in known data breaches using the
+                                <a href="https://haveibeenpwned.com" target="_blank" rel="noopener">Have I Been
+                                    Pwned</a> API.
+                                Only the first 5 characters of the SHA-1 hash are sent — your full password is never
+                                transmitted.
+                            </p>
+                            <button class="btn btn-primary" id="breachCheckBtn" style="margin-bottom: var(--space-4);">
+                                🔍 Check for Breaches
+                            </button>
+                            <div id="breachResult">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ═══ Sidebar ═══ -->
+                    <div class="analyzer-sidebar">
+
+                        <!-- Criteria Checklist -->
+                        <div class="card fade-in-up">
+                            <div class="section-title">Security Criteria</div>
+                            <div class="criteria-list" id="criteriaList">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Password Generator -->
+                        <div class="card fade-in-up fade-in-up-1">
+                            <div class="section-title">Password Generator</div>
+
+                            <div class="generator-output" style="margin-bottom: var(--space-4);">
+                                <span class="gen-text" id="genOutput">
+                                    <span class="gen-text">Click "Generate" to create a password</span>
+                                </span>
+                            </div>
+
+                            <div class="gen-actions" style="margin-bottom: var(--space-5);">
+                                <button class="btn btn-primary" id="genBtn" style="flex:1;">🎲 Generate</button>
+                                <button class="btn-icon tooltip" id="genCopyBtn" data-tooltip="Copy"
+                                    aria-label="Copy password">📋</button>
+                                <button class="btn-icon tooltip" id="genUseBtn" data-tooltip="Use in analyzer"
+                                    aria-label="Use in analyzer">↗️</button>
+                            </div>
+
+                            <div class="generator-controls">
+                                <div>
+                                    <div class="toggle-row" style="margin-bottom: var(--space-2);">
+                                        <span class="toggle-label">Length</span>
+                                        <span class="toggle-label"
+                                            style="font-family: var(--font-mono); color: var(--color-primary-light);"
+                                            id="genLengthValue">16</span>
+                                    </div>
+                                    <input type="range" class="range-slider" id="genLength" min="8" max="64" value="16"
+                                        aria-label="Password length">
+                                </div>
+
+                                <div class="toggle-row">
+                                    <span class="toggle-label">Uppercase (A-Z)</span>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="genUppercase" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+
+                                <div class="toggle-row">
+                                    <span class="toggle-label">Lowercase (a-z)</span>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="genLowercase" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+
+                                <div class="toggle-row">
+                                    <span class="toggle-label">Digits (0-9)</span>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="genDigits" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+
+                                <div class="toggle-row">
+                                    <span class="toggle-label">Symbols (!@#...)</span>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="genSymbols" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/analyzer.js"></script>
+    <script src="js/breach.js"></script>
+    <script src="js/generator.js"></script>
+    <script src="js/ui.js"></script>
+    <script>
+        Common.init('analyzer');
+        AnalyzerUI.init();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — PassGuard</title>
+    <meta name="description"
+        content="Learn about PassGuard, the password strength analysis engine, its technology, and the developer behind it.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layouts.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body class="scan-lines">
+    <div class="page">
+        <main class="main-content">
+            <div class="container">
+
+                <!-- About Hero -->
+                <div class="about-hero fade-in-up">
+                    <img src="assets/profile.jpg" alt="Swatantra — Developer" class="about-avatar">
+                    <div class="about-info">
+                        <div class="badge badge-primary" style="margin-bottom: var(--space-4);">Developer & Creator
+                        </div>
+                        <h1>Swatantra</h1>
+                        <p style="margin-top: var(--space-4);">
+                            A passionate developer focused on building secure, elegant, and impactful web applications.
+                            PassGuard is a cybersecurity tool designed to make password security accessible and
+                            understandable for everyone.
+                        </p>
+                        <div class="tech-stack" style="margin-top: var(--space-6);">
+                            <span class="badge badge-primary">HTML5</span>
+                            <span class="badge badge-primary">CSS3</span>
+                            <span class="badge badge-primary">JavaScript</span>
+                            <span class="badge badge-primary">Web Crypto API</span>
+                            <span class="badge badge-primary">HIBP API</span>
+                            <span class="badge badge-primary">Information Theory</span>
+                        </div>
+                        <div style="margin-top: var(--space-6); display: flex; gap: var(--space-3); flex-wrap: wrap;">
+                            <a href="mailto:unfazedswatantra@yahoo.com" class="btn btn-primary">
+                                📧 Contact Me
+                            </a>
+                            <a href="analyzer.html" class="btn btn-secondary">
+                                🛡️ Try the Analyzer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About the Project -->
+                <section class="section">
+                    <div class="section-header">
+                        <h2 class="fade-in-up">About <span class="gradient-text">PassGuard</span></h2>
+                        <p class="fade-in-up fade-in-up-1">The thinking behind the tool.</p>
+                    </div>
+
+                    <div class="features-grid" style="grid-template-columns: repeat(2, 1fr);">
+                        <div class="card fade-in-up fade-in-up-1" style="padding: var(--space-8);">
+                            <h3 style="margin-bottom: var(--space-4); color: var(--color-primary-light);">The Problem
+                            </h3>
+                            <p>Most password strength meters use simplistic rules — "has uppercase? has a number?" —
+                                that give users a false sense of security. A password like <code
+                                    style="color: var(--color-danger-light);">P@ssword1</code> passes most checks
+                                despite being trivially crackable. Users deserve better.</p>
+                        </div>
+
+                        <div class="card fade-in-up fade-in-up-2" style="padding: var(--space-8);">
+                            <h3 style="margin-bottom: var(--space-4); color: var(--color-secondary-light);">The Solution
+                            </h3>
+                            <p>PassGuard uses information-theoretic entropy, pattern recognition (keyboard walks, common
+                                passwords, repetition), and real breach data from Have I Been Pwned to provide a
+                                holistic, accurate security score.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Architecture -->
+                <section class="section">
+                    <div class="section-header">
+                        <h2 class="fade-in-up">Technical <span class="gradient-text">Architecture</span></h2>
+                        <p class="fade-in-up fade-in-up-1">Under the hood.</p>
+                    </div>
+
+                    <div class="features-grid" style="grid-template-columns: repeat(2, 1fr);">
+                        <div class="card fade-in-up" style="padding: var(--space-6);">
+                            <div class="feature-icon" style="margin: 0 0 var(--space-4) 0;">🧮</div>
+                            <h4 style="margin-bottom: var(--space-2);">Entropy Engine</h4>
+                            <p style="font-size: var(--text-sm);">Calculates bits of entropy using
+                                <code>log₂(pool_size ^ length)</code>. The pool is dynamically determined from the
+                                character classes present in the password, giving an accurate measure of randomness.</p>
+                        </div>
+
+                        <div class="card fade-in-up fade-in-up-1" style="padding: var(--space-6);">
+                            <div class="feature-icon" style="margin: 0 0 var(--space-4) 0;">🔍</div>
+                            <h4 style="margin-bottom: var(--space-2);">Pattern Detector</h4>
+                            <p style="font-size: var(--text-sm);">Scans for keyboard sequences (qwerty, asdf), character
+                                repetition (aaa), sequential runs (abc, 123), and checks against a list of the top 200
+                                most common passwords.</p>
+                        </div>
+
+                        <div class="card fade-in-up fade-in-up-2" style="padding: var(--space-6);">
+                            <div class="feature-icon" style="margin: 0 0 var(--space-4) 0;">🛡️</div>
+                            <h4 style="margin-bottom: var(--space-2);">k-Anonymity Breach Check</h4>
+                            <p style="font-size: var(--text-sm);">Your password is SHA-1 hashed client-side. Only the
+                                first 5 characters of the hash are sent to the HIBP API. The full hash and password
+                                never leave your browser, preserving complete privacy.</p>
+                        </div>
+
+                        <div class="card fade-in-up fade-in-up-3" style="padding: var(--space-6);">
+                            <div class="feature-icon" style="margin: 0 0 var(--space-4) 0;">🎲</div>
+                            <h4 style="margin-bottom: var(--space-2);">Crypto-Secure Generator</h4>
+                            <p style="font-size: var(--text-sm);">Uses <code>crypto.getRandomValues()</code> for true
+                                randomness instead of <code>Math.random()</code>. Fisher-Yates shuffle ensures uniform
+                                distribution. Guarantees at least one character from each selected type.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Scoring -->
+                <section class="section">
+                    <div class="card card-elevated fade-in-up"
+                        style="padding: var(--space-10); max-width: 720px; margin: 0 auto;">
+                        <h3 style="margin-bottom: var(--space-6); text-align: center;">Scoring Formula</h3>
+                        <div
+                            style="font-family: var(--font-mono); font-size: var(--text-sm); line-height: 2; color: var(--color-text-secondary); background: rgba(10, 14, 26, 0.5); padding: var(--space-6); border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
+                            <div><span style="color: var(--color-primary-light);">base_score</span> = entropy_points
+                                <span style="color: var(--color-text-muted);">(max 50)</span></div>
+                            <div style="margin-left: var(--space-8);">+ criteria_points <span
+                                    style="color: var(--color-text-muted);">(max 30)</span></div>
+                            <div style="margin-left: var(--space-8);">+ length_bonus <span
+                                    style="color: var(--color-text-muted);">(max 20)</span></div>
+                            <div style="margin-top: var(--space-3);"><span
+                                    style="color: var(--color-danger-light);">penalties</span> = common_password <span
+                                    style="color: var(--color-text-muted);">(-60)</span></div>
+                            <div style="margin-left: var(--space-8);">+ keyboard_pattern <span
+                                    style="color: var(--color-text-muted);">(-15)</span></div>
+                            <div style="margin-left: var(--space-8);">+ repeated_chars <span
+                                    style="color: var(--color-text-muted);">(-10)</span></div>
+                            <div style="margin-left: var(--space-8);">+ sequential_chars <span
+                                    style="color: var(--color-text-muted);">(-10)</span></div>
+                            <div
+                                style="margin-top: var(--space-3); border-top: 1px solid var(--color-border); padding-top: var(--space-3);">
+                                <span style="color: var(--color-success-light);">final_score</span> = clamp(base_score -
+                                penalties, <span style="color: var(--color-text-muted);">0, 100</span>)</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script>Common.init('about');</script>
+</body>
+
+</html>

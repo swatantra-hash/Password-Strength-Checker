@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — PassGuard</title>
+    <meta name="description"
+        content="PassGuard Privacy Policy — Learn how your data is handled. All password analysis is performed entirely in your browser. No data is collected.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layouts.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body class="scan-lines">
+    <div class="page">
+        <main class="main-content">
+            <div class="legal-content fade-in-up">
+
+                <h1>Privacy Policy</h1>
+                <p class="last-updated">Last updated: March 2, 2026</p>
+
+                <p>
+                    PassGuard ("we", "us", "our") is committed to protecting your privacy. This Privacy Policy explains
+                    how information is handled when you use our password strength analysis tool ("Service").
+                </p>
+
+                <h2>1. Information We Collect</h2>
+                <p><strong>We do not collect any personal information.</strong> PassGuard operates entirely within your
+                    web browser. Specifically:</p>
+                <ul>
+                    <li>Your passwords are <strong>never stored</strong>, transmitted to our servers, or logged
+                        anywhere.</li>
+                    <li>We do <strong>not use cookies</strong>, tracking pixels, or any form of analytics.</li>
+                    <li>We do <strong>not</strong> collect your IP address, browser fingerprint, or device information.
+                    </li>
+                    <li>No user accounts, registration, or login is required.</li>
+                </ul>
+
+                <h2>2. Password Analysis</h2>
+                <p>
+                    All password analysis — including strength scoring, entropy calculation, pattern detection, and
+                    character composition — is performed <strong>entirely client-side</strong> using JavaScript running
+                    in your browser. Your password never leaves your device during analysis.
+                </p>
+
+                <h2>3. Data Breach Check</h2>
+                <p>
+                    When you use the "Check for Breaches" feature, PassGuard uses the <a
+                        href="https://haveibeenpwned.com" target="_blank" rel="noopener noreferrer">Have I Been
+                        Pwned</a> API with a technique called <strong>k-anonymity</strong>:
+                </p>
+                <ul>
+                    <li>Your password is hashed using the <strong>SHA-1</strong> algorithm entirely within your browser.
+                    </li>
+                    <li>Only the <strong>first 5 characters</strong> of the hash (out of 40) are sent to the HIBP API.
+                    </li>
+                    <li>The API returns a list of matching hash suffixes, which are compared locally in your browser.
+                    </li>
+                    <li><strong>Your full password and its complete hash are never transmitted</strong> over the
+                        network.</li>
+                </ul>
+                <p>
+                    This means that even the Have I Been Pwned service cannot determine which password you are checking.
+                    For more information on this approach, see the <a
+                        href="https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange" target="_blank"
+                        rel="noopener noreferrer">HIBP API documentation</a>.
+                </p>
+
+                <h2>4. Local Storage</h2>
+                <p>
+                    PassGuard uses your browser's <code>localStorage</code> only to remember your theme preference (dark
+                    or light mode). This data:
+                </p>
+                <ul>
+                    <li>Is stored only on your device</li>
+                    <li>Is never transmitted to any server</li>
+                    <li>Can be cleared at any time through your browser settings</li>
+                    <li>Contains no personal or sensitive information</li>
+                </ul>
+
+                <h2>5. Third-Party Services</h2>
+                <p>PassGuard uses the following third-party services:</p>
+                <ul>
+                    <li><strong>Google Fonts</strong> — for loading web fonts (Inter, JetBrains Mono). Google may
+                        collect limited access logs as described in their <a
+                            href="https://developers.google.com/fonts/faq/privacy" target="_blank"
+                            rel="noopener noreferrer">privacy FAQ</a>.</li>
+                    <li><strong>Have I Been Pwned API</strong> — for breach checking, using the k-anonymity model
+                        described above. See their <a href="https://haveibeenpwned.com/Privacy" target="_blank"
+                            rel="noopener noreferrer">privacy policy</a>.</li>
+                </ul>
+
+                <h2>6. Children's Privacy</h2>
+                <p>
+                    PassGuard does not knowingly collect any information from anyone, including children under the age
+                    of 13. Since we do not collect any data whatsoever, this is inherently compliant with COPPA and
+                    similar regulations.
+                </p>
+
+                <h2>7. Changes to This Privacy Policy</h2>
+                <p>
+                    We may update this Privacy Policy from time to time. Any changes will be reflected by updating the
+                    "Last updated" date at the top of this page.
+                </p>
+
+                <h2>8. Contact Us</h2>
+                <p>
+                    If you have any questions about this Privacy Policy, you can reach us at:
+                </p>
+                <ul>
+                    <li>Email: <a href="mailto:unfazedswatantra@yahoo.com">unfazedswatantra@yahoo.com</a></li>
+                </ul>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script>Common.init('');</script>
+</body>
+
+</html>

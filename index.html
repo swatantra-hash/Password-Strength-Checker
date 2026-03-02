@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PassGuard — Password Strength Analysis Engine</title>
+  <meta name="description" content="Analyze your password strength with real-time entropy calculation, breach detection, and AI-powered suggestions. All processing happens locally in your browser.">
+  <meta name="keywords" content="password strength, password checker, security analysis, breach detection, cybersecurity">
+  <meta name="author" content="Swatantra">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layouts.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="scan-lines">
+  <div class="page">
+    <main class="main-content">
+
+      <!-- Hero Section -->
+      <section class="hero container">
+        <div class="badge badge-primary fade-in-up" style="margin-bottom: var(--space-6);">
+          🔒 100% Client-Side &bull; Zero Data Collection
+        </div>
+        <h1 class="fade-in-up fade-in-up-1">
+          How Strong Is Your<br>
+          <span class="gradient-text-animated">Password?</span>
+        </h1>
+        <p class="fade-in-up fade-in-up-2">
+          Professional-grade password security analysis powered by entropy calculation, pattern recognition, and real-time breach detection. Your password never leaves your browser.
+        </p>
+        <div class="hero-actions fade-in-up fade-in-up-3">
+          <a href="analyzer.html" class="btn btn-primary btn-large" id="heroCta">
+            🛡️ Launch Analyzer
+          </a>
+          <a href="about.html" class="btn btn-secondary btn-large">
+            Learn More →
+          </a>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="section container">
+        <div class="section-header">
+          <h2 class="fade-in-up">Enterprise-Grade Analysis</h2>
+          <p class="fade-in-up fade-in-up-1">Comprehensive security checks that go far beyond basic character counting.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="card card-interactive feature-card fade-in-up fade-in-up-1">
+            <div class="feature-icon">📊</div>
+            <h3>Entropy Calculation</h3>
+            <p>Measures true randomness in bits using information theory. Higher entropy means exponentially harder to crack.</p>
+          </div>
+
+          <div class="card card-interactive feature-card fade-in-up fade-in-up-2">
+            <div class="feature-icon">🔍</div>
+            <h3>Pattern Detection</h3>
+            <p>Identifies keyboard walks (qwerty), sequential characters, common passwords, repeated patterns, and dictionary words.</p>
+          </div>
+
+          <div class="card card-interactive feature-card fade-in-up fade-in-up-3">
+            <div class="feature-icon">🌐</div>
+            <h3>Breach Detection</h3>
+            <p>Checks against 600M+ compromised passwords via Have I Been Pwned API using k-anonymity — your full password is never sent.</p>
+          </div>
+
+          <div class="card card-interactive feature-card fade-in-up fade-in-up-1">
+            <div class="feature-icon">⏱️</div>
+            <h3>Crack Time Estimation</h3>
+            <p>Estimates time-to-crack at multiple threat levels: online attacks, GPU clusters, and hypothetical quantum computers.</p>
+          </div>
+
+          <div class="card card-interactive feature-card fade-in-up fade-in-up-2">
+            <div class="feature-icon">🎲</div>
+            <h3>Secure Generator</h3>
+            <p>Creates cryptographically random passwords using the Web Crypto API with configurable length and character types.</p>
+          </div>
+
+          <div class="card card-interactive feature-card fade-in-up fade-in-up-3">
+            <div class="feature-icon">🔐</div>
+            <h3>Zero Trust Privacy</h3>
+            <p>All analysis runs entirely in your browser. No data is stored, no cookies are set, and no passwords are ever transmitted.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section class="section container">
+        <div class="section-header">
+          <h2 class="fade-in-up">How It Works</h2>
+          <p class="fade-in-up fade-in-up-1">Three simple steps to audit your password security.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="card feature-card fade-in-up fade-in-up-1">
+            <div class="feature-icon" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.05));">
+              <span style="font-family: var(--font-mono); font-weight: 800;">1</span>
+            </div>
+            <h3>Enter Password</h3>
+            <p>Type or paste your password into the analyzer. Show/hide toggle keeps it private.</p>
+          </div>
+
+          <div class="card feature-card fade-in-up fade-in-up-2">
+            <div class="feature-icon" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(6, 182, 212, 0.05));">
+              <span style="font-family: var(--font-mono); font-weight: 800;">2</span>
+            </div>
+            <h3>Get Instant Analysis</h3>
+            <p>Real-time scoring, criteria checklist, pattern warnings, and composition breakdown appear as you type.</p>
+          </div>
+
+          <div class="card feature-card fade-in-up fade-in-up-3">
+            <div class="feature-icon" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.05));">
+              <span style="font-family: var(--font-mono); font-weight: 800;">3</span>
+            </div>
+            <h3>Check & Improve</h3>
+            <p>Run a breach check, review suggestions, or generate a new strong password with one click.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="section container" style="text-align: center;">
+        <div class="card card-elevated fade-in-up" style="padding: var(--space-16) var(--space-8); max-width: 700px; margin: 0 auto;">
+          <h2 style="margin-bottom: var(--space-4);">Ready to Check Your Password?</h2>
+          <p style="margin-bottom: var(--space-8); font-size: var(--text-lg);">
+            Find out if your password can withstand modern attack methods.
+          </p>
+          <a href="analyzer.html" class="btn btn-primary btn-large pulse-glow">
+            🚀 Start Analysis Now
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script>Common.init('home');</script>
+</body>
+</html>

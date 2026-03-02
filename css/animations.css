@@ -1,0 +1,282 @@
+/* ============================================
+   ANIMATIONS — Keyframes & Micro-interactions
+   ============================================ */
+
+/* ── Fade In Up ── */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.fade-in-up-1 {
+    animation-delay: 0.1s;
+}
+
+.fade-in-up-2 {
+    animation-delay: 0.2s;
+}
+
+.fade-in-up-3 {
+    animation-delay: 0.3s;
+}
+
+.fade-in-up-4 {
+    animation-delay: 0.4s;
+}
+
+.fade-in-up-5 {
+    animation-delay: 0.5s;
+}
+
+/* ── Fade In ── */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* ── Scale In ── */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.scale-in {
+    opacity: 0;
+    animation: scaleIn 0.4s ease-out forwards;
+}
+
+/* ── Slide In Left ── */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-in-left {
+    opacity: 0;
+    animation: slideInLeft 0.5s ease-out forwards;
+}
+
+/* ── Slide In Right ── */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-in-right {
+    opacity: 0;
+    animation: slideInRight 0.5s ease-out forwards;
+}
+
+/* ── Pulse Glow ── */
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        box-shadow: 0 0 8px var(--color-primary-glow);
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 24px var(--color-primary-glow);
+    }
+}
+
+.pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* ── Float ── */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* ── Typing Cursor ── */
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.typing-cursor::after {
+    content: '|';
+    animation: blink 1s infinite;
+    color: var(--color-primary);
+    font-weight: 100;
+}
+
+/* ── Gradient Text ── */
+.gradient-text {
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── Gradient Text Animated ── */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.gradient-text-animated {
+    background: linear-gradient(270deg, var(--color-primary-light), var(--color-secondary), var(--color-primary-light));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease infinite;
+}
+
+/* ── Shimmer / Skeleton ── */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.shimmer {
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0.03) 25%,
+            rgba(255, 255, 255, 0.08) 50%,
+            rgba(255, 255, 255, 0.03) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* ── Copy feedback ── */
+@keyframes copiedFeedback {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.copied-feedback {
+    animation: copiedFeedback 1s ease forwards;
+    position: absolute;
+    top: -30px;
+    right: 0;
+    font-size: var(--text-xs);
+    color: var(--color-success);
+    font-weight: var(--weight-semibold);
+    pointer-events: none;
+}
+
+/* ── Shield Pulse (breach check) ── */
+@keyframes shieldPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.shield-pulse {
+    animation: shieldPulse 0.6s ease-in-out;
+}
+
+/* ── Scan lines overlay (subtle cyber effect) ── */
+.scan-lines::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.03) 2px,
+            rgba(0, 0, 0, 0.03) 4px);
+    pointer-events: none;
+    z-index: 9999;
+}
+
+[data-theme="light"] .scan-lines::before {
+    display: none;
+}

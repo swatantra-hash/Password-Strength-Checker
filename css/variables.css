@@ -1,0 +1,138 @@
+/* ============================================
+   DESIGN TOKENS — Password Strength Analyzer
+   ============================================ */
+
+:root {
+  /* ── Colors: Dark Theme (default) ── */
+  --color-bg-primary: #0a0e1a;
+  --color-bg-secondary: #141b2d;
+  --color-bg-gradient: linear-gradient(135deg, #0a0e1a 0%, #141b2d 50%, #0f1629 100%);
+  --color-surface: rgba(20, 27, 45, 0.7);
+  --color-surface-hover: rgba(30, 40, 65, 0.8);
+  --color-surface-elevated: rgba(25, 35, 55, 0.85);
+  --color-border: rgba(99, 102, 241, 0.15);
+  --color-border-hover: rgba(99, 102, 241, 0.35);
+
+  /* Accent */
+  --color-primary: #6366f1;
+  --color-primary-light: #818cf8;
+  --color-primary-dark: #4f46e5;
+  --color-primary-glow: rgba(99, 102, 241, 0.4);
+  --color-secondary: #06b6d4;
+  --color-secondary-light: #22d3ee;
+  --color-secondary-glow: rgba(6, 182, 212, 0.3);
+
+  /* Semantic */
+  --color-danger: #ef4444;
+  --color-danger-light: #f87171;
+  --color-danger-glow: rgba(239, 68, 68, 0.3);
+  --color-warning: #f59e0b;
+  --color-warning-light: #fbbf24;
+  --color-warning-glow: rgba(245, 158, 11, 0.3);
+  --color-success: #22c55e;
+  --color-success-light: #4ade80;
+  --color-success-glow: rgba(34, 197, 94, 0.3);
+
+  /* Text */
+  --color-text-primary: #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #0f172a;
+
+  /* ── Typography ── */
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+  --text-6xl: 3.75rem;     /* 60px */
+
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+
+  /* ── Spacing ── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* ── Border Radius ── */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --shadow-glow-primary: 0 0 20px var(--color-primary-glow);
+  --shadow-glow-secondary: 0 0 20px var(--color-secondary-glow);
+  --shadow-glow-danger: 0 0 20px var(--color-danger-glow);
+  --shadow-glow-success: 0 0 20px var(--color-success-glow);
+
+  /* ── Transitions ── */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Z-Index ── */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-modal: 1000;
+  --z-tooltip: 1100;
+  --z-nav: 900;
+
+  /* ── Container ── */
+  --container-max: 1200px;
+  --container-narrow: 720px;
+}
+
+/* ── Light Theme Override ── */
+[data-theme="light"] {
+  --color-bg-primary: #f8fafc;
+  --color-bg-secondary: #f1f5f9;
+  --color-bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+  --color-surface: rgba(255, 255, 255, 0.85);
+  --color-surface-hover: rgba(241, 245, 249, 0.9);
+  --color-surface-elevated: rgba(255, 255, 255, 0.95);
+  --color-border: rgba(99, 102, 241, 0.2);
+  --color-border-hover: rgba(99, 102, 241, 0.4);
+
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94a3b8;
+  --color-text-inverse: #f8fafc;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
+}
