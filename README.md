@@ -142,3 +142,7 @@ final_score = clamp(base_score - penalties, 0, 100)
 ## 📄 License
 
 © 2026 Swatantra. All Rights Reserved.
+
+---
+
+*Last updated: March 3, 2026*
